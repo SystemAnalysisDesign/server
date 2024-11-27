@@ -28,17 +28,13 @@ public class SecurityConfig {
         // csrf 비활성화
         http
                 .csrf(csrf -> csrf.disable());
-
         // http basic 인증 방식 disable
         http
                 .httpBasic((auth) -> auth.disable());
-
-
         http
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers(allowedUrls).permitAll()
                         .anyRequest().authenticated());
-
         // 세션 설정
         http
                 .sessionManagement((session) -> session
