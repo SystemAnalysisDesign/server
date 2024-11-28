@@ -3,7 +3,6 @@ package com.example.SystemAnalysisDesign.post.controller;
 import com.example.SystemAnalysisDesign.common.dto.reqeust.SuccessResponse;
 import com.example.SystemAnalysisDesign.common.dto.reqeust.result.ListResult;
 import com.example.SystemAnalysisDesign.common.dto.reqeust.result.SingleResult;
-import com.example.SystemAnalysisDesign.common.service.ResponseService;
 import com.example.SystemAnalysisDesign.post.controller.dto.PostResponse;
 import com.example.SystemAnalysisDesign.post.domain.dto.PostCreateDto;
 import com.example.SystemAnalysisDesign.post.domain.dto.PostUpdateDto;
