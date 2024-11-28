@@ -58,4 +58,12 @@
             this.content = dto.getContent();
             return this;
         }
+
+        // 연관 관계 편의 메서드
+        public void associateUser(User user) {
+            this.user = user;
+            if (!user.getPosts().contains(this)) {
+                user.getPosts().add(this);
+            }
+        }
     }

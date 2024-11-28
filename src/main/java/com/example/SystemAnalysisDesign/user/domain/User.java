@@ -44,4 +44,15 @@ public class User {
                 .password(encoder.encode(dto.getPassword()))
                 .build();
     }
+
+    // 연관 관계 편의 메서드
+    public void addUserKeyword(UserKeyword userKeyword) {
+        this.userKeywords.add(userKeyword);
+        userKeyword.associateUser(this);
+    }
+
+    public void addPost(Post post) {
+        this.posts.add(post);
+        post.associateUser(this);
+    }
 }

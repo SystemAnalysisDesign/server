@@ -47,4 +47,15 @@ public class Keyword {
         this.name = dto.getName();
         return this;
     }
+
+    // 연관 관계 편의 메서드
+    public void addUserKeyword(UserKeyword userKeyword) {
+        this.userKeywords.add(userKeyword);
+        userKeyword.associateKeyword(this);
+    }
+
+    public void addPostKeyword(PostKeyword postKeyword) {
+        this.postKeywords.add(postKeyword);
+        postKeyword.associateKeyword(this);
+    }
 }

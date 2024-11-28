@@ -2,7 +2,6 @@ package com.example.SystemAnalysisDesign.postKeyword.domain;
 
 import com.example.SystemAnalysisDesign.keyword.domain.Keyword;
 import com.example.SystemAnalysisDesign.post.domain.Post;
-import com.example.SystemAnalysisDesign.user.domain.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,4 +25,11 @@ public class PostKeyword {
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "keyword_id")
     private Keyword keyword;
+
+    public void associateKeyword(Keyword keyword) {
+        this.keyword = keyword;
+        if (!keyword.getPostKeywords().contains(this)) {
+            keyword.getPostKeywords().add(this);
+        }
+    }
 }
