@@ -2,6 +2,7 @@
 
     import com.example.SystemAnalysisDesign.post.domain.dto.PostCreateDto;
     import com.example.SystemAnalysisDesign.post.domain.dto.PostUpdateDto;
+    import com.example.SystemAnalysisDesign.postKeyword.domain.PostKeyword;
     import com.example.SystemAnalysisDesign.user.domain.User;
     import jakarta.persistence.*;
     import lombok.Builder;
@@ -9,6 +10,8 @@
     import lombok.NoArgsConstructor;
 
     import java.time.LocalDateTime;
+    import java.util.ArrayList;
+    import java.util.List;
 
 
     @Getter
@@ -28,6 +31,9 @@
         private String title;
         private String content;
         private LocalDateTime createdAt;
+
+        @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<PostKeyword> postKeywords = new ArrayList<>();
 
         @Builder
         public Post(Long id, User user, String title, String content, LocalDateTime createdAt) {

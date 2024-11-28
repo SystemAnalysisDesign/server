@@ -2,6 +2,7 @@ package com.example.SystemAnalysisDesign.keyword.domain;
 
 import com.example.SystemAnalysisDesign.keyword.domain.dto.KeywordCreateDto;
 import com.example.SystemAnalysisDesign.keyword.domain.dto.KeywordUpdateDto;
+import com.example.SystemAnalysisDesign.postKeyword.domain.PostKeyword;
 import com.example.SystemAnalysisDesign.userKeyword.domain.UserKeyword;
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -26,6 +27,9 @@ public class Keyword {
 
     @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<UserKeyword> userKeywords = new ArrayList<>();
+
+    @OneToMany(mappedBy = "keyword", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PostKeyword> postKeywords = new ArrayList<>();
 
     @Builder
     public Keyword(Long id, String name) {
