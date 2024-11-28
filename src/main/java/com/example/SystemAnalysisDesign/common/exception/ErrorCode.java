@@ -38,7 +38,11 @@ public enum ErrorCode {
     USER_WRONG_PASSWORD(-302, "비밀번호가 틀렸습니다.", 401),
 
     // Post
-    POST_NOT_EXIST(-400,"존재하지 않는 모집글입니다.",406);
+    POST_NOT_EXIST(-400,"존재하지 않는 모집글입니다.",406),
+
+    // Keyword
+    KEYWORD_ALREADY_EXIST(-500, "이미 존재하는 키워드입니다.", 400),
+    KEYWORD_NOT_EXIST(-501, "존재하지 않는 키워드입니다.", 406);
 
     private final int errorCode;
     private final String message;
