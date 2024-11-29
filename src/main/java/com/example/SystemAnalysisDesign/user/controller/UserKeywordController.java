@@ -4,14 +4,15 @@ import com.example.SystemAnalysisDesign.common.dto.reqeust.SuccessResponse;
 import com.example.SystemAnalysisDesign.common.dto.reqeust.result.SingleResult;
 import com.example.SystemAnalysisDesign.user.controller.dto.request.AssociateKeywordDto;
 import com.example.SystemAnalysisDesign.user.controller.dto.response.UserResponse;
-import com.example.SystemAnalysisDesign.user.domain.dto.UserCreateDto;
 import com.example.SystemAnalysisDesign.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
