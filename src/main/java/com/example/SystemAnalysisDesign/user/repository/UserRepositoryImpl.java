@@ -2,6 +2,7 @@ package com.example.SystemAnalysisDesign.user.repository;
 
 import com.example.SystemAnalysisDesign.common.exception.CustomException;
 import com.example.SystemAnalysisDesign.common.exception.ErrorCode;
+import com.example.SystemAnalysisDesign.postKeyword.domain.PostKeyword;
 import com.example.SystemAnalysisDesign.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -44,5 +45,10 @@ public class UserRepositoryImpl implements UserRepository {
     public Long deleteById(long id) {
         userJpaRepository.deleteById(id);
         return id;
+    }
+
+    @Override
+    public List<User> findUsersByKeywords(List<PostKeyword> keywords) {
+        return userJpaRepository.findUsersByKeywords(keywords);
     }
 }
