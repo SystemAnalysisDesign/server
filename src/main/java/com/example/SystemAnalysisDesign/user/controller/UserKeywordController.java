@@ -2,7 +2,7 @@ package com.example.SystemAnalysisDesign.user.controller;
 
 import com.example.SystemAnalysisDesign.common.dto.reqeust.SuccessResponse;
 import com.example.SystemAnalysisDesign.common.dto.reqeust.result.SingleResult;
-import com.example.SystemAnalysisDesign.user.controller.dto.request.AssociateKeywordDto;
+import com.example.SystemAnalysisDesign.user.controller.dto.request.AssociateKeywordToUserDto;
 import com.example.SystemAnalysisDesign.user.controller.dto.response.UserResponse;
 import com.example.SystemAnalysisDesign.user.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +24,7 @@ public class UserKeywordController {
 
     @PostMapping("/associate-keyword")
     @Operation(summary = "회원에 키워드 등록")
-    public SuccessResponse<SingleResult<UserResponse>> addKeywordToUser(@Valid @RequestBody AssociateKeywordDto request) {
+    public SuccessResponse<SingleResult<UserResponse>> addKeywordToUser(@Valid @RequestBody AssociateKeywordToUserDto request) {
         SingleResult<UserResponse> result = userService.addKeywordToUser(request.getUserId(), request.getKeywordId());
         return SuccessResponse.ok(result);
     }
