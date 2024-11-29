@@ -42,7 +42,8 @@ public enum ErrorCode {
 
     // Keyword
     KEYWORD_ALREADY_EXIST(-500, "이미 존재하는 키워드입니다.", 400),
-    KEYWORD_NOT_EXIST(-501, "존재하지 않는 키워드입니다.", 406);
+    KEYWORD_NOT_EXIST(-501, "존재하지 않는 키워드입니다.", 406),
+    DUPLICATE_KEYWORD(-502, "회원은 이미 해당 키워드를 가지고 있습니다.", 409);
 
     private final int errorCode;
     private final String message;
