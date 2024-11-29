@@ -4,6 +4,7 @@
     import com.example.SystemAnalysisDesign.post.domain.dto.PostUpdateDto;
     import com.example.SystemAnalysisDesign.postKeyword.domain.PostKeyword;
     import com.example.SystemAnalysisDesign.user.domain.User;
+    import com.example.SystemAnalysisDesign.userKeyword.domain.UserKeyword;
     import jakarta.persistence.*;
     import lombok.Builder;
     import lombok.Getter;
@@ -65,5 +66,10 @@
             if (!user.getPosts().contains(this)) {
                 user.getPosts().add(this);
             }
+        }
+
+        public void addPostKeyword(PostKeyword postKeyword) {
+            this.postKeywords.add(postKeyword);
+            postKeyword.associatePost(this);
         }
     }

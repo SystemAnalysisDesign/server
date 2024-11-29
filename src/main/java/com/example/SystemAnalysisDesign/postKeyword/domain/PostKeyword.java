@@ -3,6 +3,7 @@ package com.example.SystemAnalysisDesign.postKeyword.domain;
 import com.example.SystemAnalysisDesign.keyword.domain.Keyword;
 import com.example.SystemAnalysisDesign.post.domain.Post;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,10 +27,25 @@ public class PostKeyword {
     @JoinColumn(name = "keyword_id")
     private Keyword keyword;
 
+    @Builder
+    public PostKeyword(Long id, Post post, Keyword keyword) {
+        this.id = id;
+        this.post = post;
+        this.keyword = keyword;
+    }
+
     public void associateKeyword(Keyword keyword) {
         this.keyword = keyword;
         if (!keyword.getPostKeywords().contains(this)) {
             keyword.getPostKeywords().add(this);
         }
     }
+
+    public void associatePost(Post post) {
+        this.post = post;
+        if (!post.getPostKeywords().contains(this)) {
+            post.getPostKeywords().add(this);
+        }
+    }
+
 }
