@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 @Getter
-public class AssociateKeywordDto {
+public class AssociateKeywordToUserDto {
 
     @Schema(description = "유저 아이디", example = "1")
     private final Long userId;
@@ -15,7 +15,7 @@ public class AssociateKeywordDto {
     private final Long keywordId;
 
     @Builder
-    public AssociateKeywordDto(
+    public AssociateKeywordToUserDto(
             @JsonProperty("userId") Long userId,
             @JsonProperty("keywordId") Long keywordId) {
         this.userId = userId;
