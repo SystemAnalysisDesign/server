@@ -4,6 +4,7 @@ import com.example.SystemAnalysisDesign.common.dto.reqeust.result.ListResult;
 import com.example.SystemAnalysisDesign.common.dto.reqeust.result.SingleResult;
 import com.example.SystemAnalysisDesign.common.exception.CustomException;
 import com.example.SystemAnalysisDesign.common.exception.ErrorCode;
+import com.example.SystemAnalysisDesign.common.service.MailService;
 import com.example.SystemAnalysisDesign.common.service.ResponseService;
 import com.example.SystemAnalysisDesign.keyword.domain.Keyword;
 import com.example.SystemAnalysisDesign.keyword.repository.KeywordRepository;
@@ -17,6 +18,7 @@ import com.example.SystemAnalysisDesign.postKeyword.repository.PostKeywordReposi
 import com.example.SystemAnalysisDesign.user.domain.User;
 import com.example.SystemAnalysisDesign.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,20 +28,45 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
+@Slf4j
 public class PostService {
 
     private final PostRepository postRepository;
     private final UserRepository userRepository;
     private final KeywordRepository keywordRepository;
     private final PostKeywordRepository postKeywordRepository;
+    private final MailService mailService;
 
     @Transactional
     public SingleResult<PostResponse> create(PostCreateDto dto) {
         User user = userRepository.findById(dto.getUserId())
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_EXIST));
         Post post = postRepository.save(Post.from(dto, user));
+
+        // 키워드 추가
+        List<Long> keywordIds = dto.getKeywordsIds();
+        List<Keyword> keywords = keywordRepository.findAllById(keywordIds);
+
+        for (Keyword keyword : keywords) {
+
+            PostKeyword postKeyword = PostKeyword.builder()
+                    .post(post)
+                    .keyword(keyword)
+                    .build();
+
+            post.addPostKeyword(postKeyword);
+            keyword.addPostKeyword(postKeyword);
+        }
+
+        // 알림 받을 유저 추출
+        List<User> usersToNotify = userRepository.findUsersByKeywords(keywords);
+
+        // 알림 보내기
+        mailService.sendNotificationsToUsers(usersToNotify, post);
+
         return ResponseService.getSingleResult(PostResponse.from(post));
     }
+
 
     public SingleResult<PostResponse> getById(long id) {
         Post post = postRepository.getById(id);

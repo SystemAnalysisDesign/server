@@ -1,7 +1,6 @@
 package com.example.SystemAnalysisDesign.keyword.repository;
 
 import com.example.SystemAnalysisDesign.keyword.domain.Keyword;
-import com.example.SystemAnalysisDesign.post.domain.Post;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,4 +20,6 @@ public interface KeywordRepository {
     List<Keyword> findAll();
 
     Long deleteById(long id);
+
+    List<Keyword> findAllById(Iterable<Long> ids);
 }

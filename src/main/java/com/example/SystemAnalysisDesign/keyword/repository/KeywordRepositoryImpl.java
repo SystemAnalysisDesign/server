@@ -3,9 +3,11 @@ package com.example.SystemAnalysisDesign.keyword.repository;
 import com.example.SystemAnalysisDesign.common.exception.CustomException;
 import com.example.SystemAnalysisDesign.common.exception.ErrorCode;
 import com.example.SystemAnalysisDesign.keyword.domain.Keyword;
+import com.example.SystemAnalysisDesign.postKeyword.domain.PostKeyword;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.security.Key;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +51,10 @@ public class KeywordRepositoryImpl implements KeywordRepository {
     public Long deleteById(long id) {
         keywordJpaRepository.deleteById(id);
         return id;
+    }
+
+    @Override
+    public List<Keyword> findAllById(Iterable<Long> ids) {
+        return keywordJpaRepository.findAllById(ids);
     }
 }
