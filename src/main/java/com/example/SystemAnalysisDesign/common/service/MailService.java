@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -26,6 +27,7 @@ public class MailService {
     @Value("${MAIL_SENDER}")
     private String mailSenderAddress;
 
+    @Async("taskExecutor")
     public void sendNotificationEmail(String to, String subject, Post post) {
         try {
             MimeMessage message = mailSender.createMimeMessage();
@@ -49,7 +51,7 @@ public class MailService {
         }
     }
 
-
+    @Async("taskExecutor")
     public void sendNotificationsToUsers(List<User> users, Post post) {
         for (User user : users) {
             String emailSubject = "[새 글 알림] 키워드 관련 글이 등록되었습니다!";

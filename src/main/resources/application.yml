@@ -3,9 +3,9 @@ spring:
     name: SystemAnalysisDesign
 
   datasource:
-    url: jdbc:mysql://localhost:3306/SystemAD
-    username: root
-    password: root
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -16,14 +16,27 @@ spring:
         show_sql: true
         format_sql: true
         default_batch_fetch_size: 100
-        dialect: org.hibernate.dialect.MySQL8Dialect
 
   logging.level:
     org.hibernate.SQL: debug
     org.hibernate.type: trace
     org.springframework.security: DEBUG
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_SENDER}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        protocol: smtps
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+          localhost: localhost
+
 logging:
   level:
-    root: INFO
-    org.springframework.web: DEBUG
+    org.springframework.mail: DEBUG
+    org.apache.commons.mail: DEBUG
