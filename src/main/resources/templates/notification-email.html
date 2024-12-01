@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>새 글 알림</title>
+</head>
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
+<div style="width: 80%; margin: 30px auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <h1 style="color: #333; font-size: 24px;">새 글 알림: <span th:text="${title}">제목</span></h1>
+    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 4px; margin: 20px 0;">
+        <p style="color: #555; font-size: 16px; line-height: 1.5;"><strong>글 내용:</strong></p>
+        <p style="color: #555; font-size: 16px; line-height: 1.5;" th:text="${content}">내용</p>
+    </div>
+    <p style="color: #555; font-size: 16px; line-height: 1.5;">받는 사람: <span style="font-weight: bold; color: #007bff;" th:text="${email}">이메일 주소</span></p>
+    <a href="#" style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 20px;">더 알아보기</a>
+
+    <div style="margin-top: 30px; padding-top: 10px; font-size: 14px; color: #777; border-top: 1px solid #ddd; text-align: center;">
+        <p>본 이메일은 시스템에서 자동으로 전송된 알림입니다.</p>
+    </div>
+</div>
+</body>
+</html>
