@@ -7,6 +7,7 @@ import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -43,6 +44,9 @@ public class MailService {
             helper.setSubject(subject);
             helper.setText(html, true);
             helper.setFrom(mailSenderAddress);
+
+            ClassPathResource image = new ClassPathResource("logo/bamboo.png");
+            helper.addInline("logo", image);
 
             mailSender.send(message);
             log.info("이메일 전송 성공: {}", to);

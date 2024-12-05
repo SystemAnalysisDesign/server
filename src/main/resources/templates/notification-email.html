@@ -2,20 +2,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>새 글 알림</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0;">
-<div style="width: 80%; margin: 30px auto; background-color: #ffffff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-    <h1 style="color: #333; font-size: 24px;">새 글 알림: <span th:text="${title}">제목</span></h1>
-    <div style="background-color: #f9f9f9; padding: 15px; border-radius: 4px; margin: 20px 0;">
-        <p style="color: #555; font-size: 16px; line-height: 1.5;"><strong>글 내용:</strong></p>
-        <p style="color: #555; font-size: 16px; line-height: 1.5;" th:text="${content}">내용</p>
+<body style="font-family: Arial, sans-serif; background-color: #0d0d0d; color: white; margin: 0; padding: 0;">
+<div style="max-width: 600px; margin: auto; padding: 20px; background-color: #161616; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
+    <div style="text-align: center; padding: 20px 0;">
+        <img src="cid:logo" alt="Logo" style="max-width: 150px;">
+        <h1 style="font-size: 24px; margin: 10px 0; color: white;">Bamboo 알림</h1>
     </div>
-    <p style="color: #555; font-size: 16px; line-height: 1.5;">받는 사람: <span style="font-weight: bold; color: #007bff;" th:text="${email}">이메일 주소</span></p>
-    <a href="#" style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 4px; text-decoration: none; display: inline-block; margin-top: 20px;">더 알아보기</a>
-
-    <div style="margin-top: 30px; padding-top: 10px; font-size: 14px; color: #777; border-top: 1px solid #ddd; text-align: center;">
-        <p>본 이메일은 시스템에서 자동으로 전송된 알림입니다.</p>
+    <div style="padding: 20px; line-height: 1.6; color: white;">
+        <p style="margin: 0 0 10px;">안녕하세요,</p>
+        <p style="margin: 0 0 10px;">아래와 같이 최신 정보를 확인하세요</p>
+        <h1 style="color: #88dab7; font-size: 24px;">새 글 알림: <span th:text="${title}">제목</span></h1>
+        <div style="background-color: #88dab7; padding: 15px; border-radius: 4px; margin: 20px 0;">
+            <p style="color: #555; font-size: 16px; line-height: 1.5;"><strong>글 내용:</strong></p>
+            <p style="color: #555; font-size: 16px; line-height: 1.5;" th:text="${content}">내용</p>
+        </div>
+        <a href="#" style="display: inline-block; padding: 10px 20px; margin: 20px 0; background-color: #88dab7; color: #0d0d0d; text-decoration: none; border-radius: 5px; font-weight: bold;">더 알아보기</a>
+    </div>
+    <div style="text-align: center; padding: 20px 0; font-size: 14px; color: #666;">
+        <p>&copy; 2024 Bamboo. All rights reserved.</p>
     </div>
 </div>
 </body>
