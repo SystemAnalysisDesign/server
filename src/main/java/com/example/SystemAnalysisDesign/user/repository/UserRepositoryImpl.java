@@ -2,7 +2,7 @@ package com.example.SystemAnalysisDesign.user.repository;
 
 import com.example.SystemAnalysisDesign.common.exception.CustomException;
 import com.example.SystemAnalysisDesign.common.exception.ErrorCode;
-import com.example.SystemAnalysisDesign.postKeyword.domain.PostKeyword;
+import com.example.SystemAnalysisDesign.keyword.domain.Keyword;
 import com.example.SystemAnalysisDesign.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -48,7 +48,7 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public List<User> findUsersByKeywords(List<PostKeyword> keywords) {
+    public List<User> findUsersByKeywords(List<Keyword> keywords) {
         return userJpaRepository.findUsersByKeywords(keywords);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.SystemAnalysisDesign.user.repository;
 
 
-import com.example.SystemAnalysisDesign.postKeyword.domain.PostKeyword;
+import com.example.SystemAnalysisDesign.keyword.domain.Keyword;
 import com.example.SystemAnalysisDesign.user.domain.User;
 
 import java.util.List;
@@ -20,5 +20,5 @@ public interface UserRepository {
 
     Long deleteById(long id);
 
-    List<User> findUsersByKeywords(List<PostKeyword> keywords);
+    List<User> findUsersByKeywords(List<Keyword> keywords);
 }

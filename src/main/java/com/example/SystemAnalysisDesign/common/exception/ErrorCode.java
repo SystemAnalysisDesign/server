@@ -2,6 +2,7 @@ package com.example.SystemAnalysisDesign.common.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 
 @Getter
 @AllArgsConstructor
@@ -10,9 +11,9 @@ public enum ErrorCode {
     /**
      * 에러코드 규약
      * HTTP Status Code는 에러에 가장 유사한 코드를 부여한다.
-     * 사용자정의 에러코드는 음수를 사용한다.
      * 사용자정의 에러코드는 중복되지 않게 배정한다.
-     * 사용자정의 에러코드는 각 카테고리 별로 100단위씩 끊어서 배정한다. 단, Common 카테고리는 -100 단위를 고정으로 가져간다.
+     * 사용자정의 에러코드는 각 카테고리 이름과 숫자를 조합하여 명확성을 더한다.
+     * COMMON 카테고리는 100으로 시작한다
      */
 
     /**
@@ -26,26 +27,21 @@ public enum ErrorCode {
      */
 
     // Common
-    SERVER_UNTRACKED_ERROR(-100, "미등록 서버 에러입니다. 서버 팀에 연락주세요.", 500),
-    OBJECT_NOT_FOUND(-101, "조회된 객체가 없습니다.", 406),
-    INVALID_PARAMETER(-102, "잘못된 파라미터입니다.",422),
-    PARAMETER_VALIDATION_ERROR(-103, "파라미터 검증 에러입니다.",422),
-    PARAMETER_GRAMMAR_ERROR(-104, "파라미터 문법 에러입니다.",422),
+    SERVER_UNTRACKED_ERROR("COMMON500", "미등록 서버 에러입니다. 서버 팀에 연락주세요.", HttpStatus.INTERNAL_SERVER_ERROR),
+    OBJECT_NOT_FOUND("COMMON404", "조회된 객체가 없습니다.", HttpStatus.NOT_FOUND),
+    INVALID_PARAMETER("COMMON422", "잘못된 파라미터입니다.", HttpStatus.UNPROCESSABLE_ENTITY),
+    PARAMETER_VALIDATION_ERROR("COMMON422", "파라미터 검증 에러입니다.", HttpStatus.UNPROCESSABLE_ENTITY),
+    PARAMETER_GRAMMAR_ERROR("COMMON422", "파라미터 문법 에러입니다.", HttpStatus.UNPROCESSABLE_ENTITY),
 
     // User
-    USER_ALREADY_EXIST(-300, "이미 회원가입된 유저입니다.", 400),
-    USER_NOT_EXIST(-301, "존재하지 않는 유저입니다.", 406),
-    USER_WRONG_PASSWORD(-302, "비밀번호가 틀렸습니다.", 401),
+    USER_ALREADY_EXIST("USER400", "이미 회원가입된 유저입니다.", HttpStatus.BAD_REQUEST),
+    USER_NOT_EXIST("USER404", "존재하지 않는 유저입니다.", HttpStatus.NOT_FOUND),
+    USER_WRONG_PASSWORD("USER401", "비밀번호가 틀렸습니다.", HttpStatus.UNAUTHORIZED),
 
     // Post
-    POST_NOT_EXIST(-400,"존재하지 않는 모집글입니다.",406),
+    POST_NOT_EXIST("POST404", "존재하지 않는 모집글입니다.", HttpStatus.NOT_FOUND);
 
-    // Keyword
-    KEYWORD_ALREADY_EXIST(-500, "이미 존재하는 키워드입니다.", 400),
-    KEYWORD_NOT_EXIST(-501, "존재하지 않는 키워드입니다.", 406),
-    DUPLICATE_KEYWORD(-502, "회원은 이미 해당 키워드를 가지고 있습니다.", 409);
-
-    private final int errorCode;
+    private final String errorCode;
     private final String message;
-    private final int httpCode;
+    private final HttpStatus status;
 }

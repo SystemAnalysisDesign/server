@@ -8,16 +8,16 @@ import lombok.Getter;
 public class SuccessResponse<T> {
 
     @Schema(description = "성공 여부", example = "true")
-    private boolean success = true;
+    private final boolean isSuccess = true;
 
     @Schema(description = "상태 코드", example = "1")
-    private int code;
+    private final int code;
 
     @Schema(description = "응답 메세지", example = "성공하였습니다.")
-    private String message;
+    private final String message;
 
     @Schema(description = "응답 데이터")
-    private T result;
+    private final T result;
 
     public SuccessResponse(int code, String message, T result) {
         this.code = code;

@@ -1,10 +1,12 @@
 package com.example.SystemAnalysisDesign.user.domain;
 
+import com.example.SystemAnalysisDesign.common.exception.CustomException;
 import com.example.SystemAnalysisDesign.user.domain.dto.UserCreateDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class UserTest {
     
@@ -26,4 +28,5 @@ public class UserTest {
         assertThat(user.getEmail()).isEqualTo("kjk@naver.com");
         assertThat(encoder.matches("1234", user.getPassword())).isTrue();
     }
+
 }

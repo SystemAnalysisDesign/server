@@ -7,28 +7,28 @@ import lombok.Getter;
 public class ErrorResponse<T> {
 
     @Schema(description = "성공 여부", example = "false")
-    private boolean success = false;
+    private final boolean isSuccess = false;
 
-    @Schema(description = "예외 코드", example = "-100")
-    private int code;
+    @Schema(description = "예외 코드", example = "COMMON500")
+    private final String code;
 
     @Schema(description = "예외 메세지", example = "실패하였습니다.")
-    private String message;
+    private final String message;
 
     @Schema(description = "예외 참고 데이터")
-    private T result;
+    private final T result;
 
-    public ErrorResponse(int code, String message, T result) {
+    public ErrorResponse(String code, String message, T result) {
         this.code = code;
         this.message = message;
         this.result = result;
     }
 
-    public static <T> ErrorResponse<T> of(int code, String message) {
+    public static <T> ErrorResponse<T> of(String code, String message) {
         return new ErrorResponse<>(code, message, null);
     }
 
-    public static <T> ErrorResponse<T> ok(int code, String message, T data) {
+    public static <T> ErrorResponse<T> ok(String code, String message, T data) {
         return new ErrorResponse<>(code, message, data);
     }
 }
